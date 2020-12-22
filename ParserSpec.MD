@@ -1,27 +1,79 @@
-<!-- ## Requiorements -->
+# mo(nad) auth(orization)
 
+
+```css
+*::own {
+   allow(read, update, create, delete)
+}
+journal {
+    
+}
+Admin {
+    *::own {
+        allow(read, update, create, delete)
+    }
+
+    journal::own test {
+        extend(crud)
+        allow(read, update, create, test)
+    }
+
+    journal[a="123"]::own test {
+        extend(crud)
+        allow(read, update, create, test)
+        deny(read, update)
+    }
+}
+Nurse {
+    .journal::own .test {
+        deny(update)
+    }
+}
+```
+
+```
+Operations matrix
+Object = journalX
+Subject = Me
+
+Specificity wins!
+
+findMatchingAncestor()
+
+compileAuthMap() {
+    ids only output
+    "type:id"
+}
+
+{"test": {
+    .with-anceestor: ["Journal:2323"],
+    .with-attribute: ["a=234"]
+    read, update create test
+}}
+
+<Can I={me} Subject={testInstance} action={read}>
+
+</Can>
+
+testInstance {
+    ancestors: ["lala:1234","journal:2133"]
+}
+
+ME combine roles
+
+```
 
 
 ```
-ReadOnlyOwn -> Ownership & Permissions.read
-ReadOthers -> Ownership & Permissions(Document).read
-
-CanRead: Ownership
-CanWrite: Ownership
-```
-
-```
-[Entry1] -> [Entry2] -> [Entry3]
-```
-
-```
-Permissions per user flat
-CanEdit
-CanOpenX
-```
-
-
-
-```jsx
-<Can rule={Read} subject={Document}></Can>
+ROLE
+BRAKET
+ATTRIBUTE-OPEN-BRACKET
+ATTRIBUTE-OPEN-BRACKET
+IDENTIFIER
+LITERAL
+CLASS-LITERAL
+CLASS-MODIFIER
+EXTEND-MODIFIER
+EXTEND-BRACKET
+EXTEND-REFERENCE
 ```

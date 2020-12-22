@@ -1,0 +1,9 @@
+# Admin role
+# Should output
+# ROLE BRAKET CLASS-IDENTIFIER CLASS-MODIFIER CLASS-IDENTIFIER BRAKET
+# EXTEND EXTEND-BRACKET EXTEND-REFERENCE EXTEND-BRACKET BRAKET BRAKET
+Admin {
+    .journal::own .test {
+        extend(crud)
+    }
+} 
