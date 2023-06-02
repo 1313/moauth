@@ -1,4 +1,4 @@
-# mo(nad) auth(orization)
+#
 
 
 ```css
